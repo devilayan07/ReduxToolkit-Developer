@@ -1,15 +1,33 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchDelete, fetchProduct } from '../../ReduxToolkit/ProductSlice'
-import {  Typography, Card, CardMedia, CardContent, CardActions, Button, CardActionArea, Grid } from '@mui/material'
+import {  Typography, Card, CardMedia, CardContent, CardActions, Button, CardActionArea, Grid, Box, Pagination } from '@mui/material'
 import { myproduct } from '../../../Component/Helper/Helper'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 function Productlist() {
     const Products=useSelector(state=>state.Product)
-    console.log(Products)
     const dispatch=useDispatch()
+    const{totalpage}=useSelector(state=>state.Product)
+    const[totalrecords,setPage]=useState()
+    console.log(totalrecords,"totalrecords")
+    console.log(Products)
+    console.log(totalpage)
+   
+
+    const handleChange=(pageno)=>{
+      setPage(pageno)
+      dispatch(
+        fetchProduct({
+
+          page:pageno,
+          perpage:10
+
+        })
+      )
+
+    }
 
     useEffect(()=>{
         dispatch(fetchProduct())
@@ -58,10 +76,10 @@ function Productlist() {
                 <CardMedia
                   component="img"
                   height="200px"
-                  image={myproduct(item.image)} />
+                  image={myproduct(item?.image)} />
                 <CardContent>
-                  <Typography variant='h5' component="div" textAlign="center">{item.title}</Typography>
-                  <Typography variant='h6' component="div" >{item.description}</Typography>
+                  <Typography variant='h5' component="div" textAlign="center">{item?.title}</Typography>
+                  <Typography variant='h6' component="div" >{item?.description}</Typography>
 
                 </CardContent>
               </CardActionArea>
@@ -76,6 +94,22 @@ function Productlist() {
       }
 
     </Grid>
+    <Box sx={{display:"flex",justifyContent:"center",mt:4}} >
+    {Products.length!==0?(
+        <Pagination
+         count={totalpage}
+         onChange={handleChange}
+         totalrecords={totalrecords}
+         sx={{alignItems:"center",justifyContent:"center"}}
+        />
+
+      ):(
+      <></>
+      )}
+
+      
+
+    </Box>
     </section>
 
   )

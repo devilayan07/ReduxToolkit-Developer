@@ -28,6 +28,7 @@ const ProductSlice=createSlice({
         isLoading:false,
         product:[],
         detail:[],
+        totalpage:"",
         error:null,
         status:"idle"
 
@@ -40,6 +41,7 @@ const ProductSlice=createSlice({
         builder.addCase(fetchProduct.fulfilled,(state,action)=>{
             state.isLoading=false
             state.product=action.payload
+            state.totalpage=action.payload.totalPages
             state.error=null
         })
         builder.addCase(fetchProduct.rejected,(state,action)=>{

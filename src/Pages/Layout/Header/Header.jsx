@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux';
 import DrawerComp from '../../../Component/DrawerComp/DrawerComp';
 import { handleLoggedout } from '../../ReduxToolkit/AuthSlice';
+import { profile_pic } from '../../../Component/Helper/Helper';
 
 function Header() {
     const [authenticated, setAuthenticated] = useState(false);
     const{isloggedIn}=useSelector(state=>state.AUTH)
+    const{profile}=useSelector(state=>state.Profile)
     console.log(isloggedIn)
     const dispatch=useDispatch()
     useEffect(() => {
@@ -17,7 +19,7 @@ function Header() {
       }
     }, [authenticated]);
     const[value,setValue]=useState()
-    // const token=localStorage.getItem("token")
+    const token=localStorage.getItem("token")
 
     
 
@@ -39,67 +41,149 @@ function Header() {
     }
 
   return (
+    <>
+
+    {
+      token ? (
+        <AppBar sx={{backgroundColor:"#FFFFFF"}}>
+        <Toolbar>
+   
+          { isMatch ? <>
+           <Typography variant='h6' sx={{fontWeight:"700",marginLeft:"20px"}}>
+                       ED-TECH
+                   </Typography>
+   
+                <DrawerComp/>
+           
+          </> : <Grid sx={{placeItems:"center"}} container >
+               <Grid item xs={2}>
+                   <Typography variant='h6' sx={{fontWeight:"700",marginLeft:"20px",color:"green"}}>
+                       ED-TECH
+                   </Typography>
+               </Grid>
+               <Grid item xs={6} >
+                   <Tabs sx={{marginLeft:"auto"}} textColor='inherit' indicatorColor='secondary' value={value} onChange={handleChange}>
+                       <Tab sx={{color:"green"}} label="Home" to="/" component={Link}/>
+                       <Tab sx={{color:"green"}} label="Product" to="/product" component={Link}/>
+                       <Tab sx={{color:"green"}} label="Create" to="/create" component={Link}/>
+                       {/* <Tab sx={{color:"green"}} label="Blog" to="/blog" component={Link}/> */}
+                       {/* <Tab sx={{color:"green"}} label="Contact" to="/contact" component={Link}/> */}
+
+        </Tabs>
+                   </Grid>
+                   <Grid item xs={1}>
+                   <img src={profile_pic(profile?.profile_pic)}alt=""
+                                        height={"50px"}
+                                        width={"50px"}
+                                        style={{ marginLeft: "auto", borderRadius: "50%" }}
+                   
+                                      
+                                      />
+
+
+
+                   </Grid>
+                   
+                   
+                   
+                  
+   
+                   <Grid item xs={3}>
+                       <Box display="flex">
+                       {/* <Button sx={{marginLeft:"auto",backgroundColor:"#F77D0A"}}variant='contained' component={Link} to="/login">Login</Button> */}
+                       {isloggedIn ? (
+                 <Button
+                   component={Link}
+                   // onClick={Hello}
+                   variant='contained'
+                   to="/login"
+                   sx={{ backgroundColor: "#F77D0A",marginLeft:"auto" }}
+                   onClick={()=>logout()}
+                 >
+                   Logout
+                 </Button>
+               ) : (
+                 <Button variant='contained' component={Link} to="/login" sx={{ backgroundColor: "#F77D0A",marginLeft:"auto" }}>
+                   Login
+                 </Button>
+               )}
+                       </Box>
+   
+   
+                   </Grid>
+               </Grid>}
+           
+        </Toolbar>
+       </AppBar>
+   
+
+      ):(
+        <AppBar sx={{backgroundColor:"#FFFFFF"}}>
+        <Toolbar>
+   
+          { isMatch ? <>
+           <Typography variant='h6' sx={{fontWeight:"700",marginLeft:"20px"}}>
+                       ED-TECH
+                   </Typography>
+   
+                <DrawerComp/>
+           
+          </> : <Grid sx={{placeItems:"center"}} container >
+               <Grid item xs={2}>
+                   <Typography variant='h6' sx={{fontWeight:"700",marginLeft:"20px",color:"green"}}>
+                       ED-TECH
+                   </Typography>
+               </Grid>
+               <Grid item xs={6} >
+                   <Tabs sx={{marginLeft:"auto"}} textColor='inherit' indicatorColor='secondary' value={value} onChange={handleChange}>
+                       <Tab sx={{color:"green"}} label="Home" to="/" component={Link}/>
+                       <Tab sx={{color:"green"}} label="Product" to="/product" component={Link}/>
+                       <Tab sx={{color:"green"}} label="Create" to="/create" component={Link}/>
+                       {/* <Tab sx={{color:"green"}} label="Blog" to="/blog" component={Link}/> */}
+                       {/* <Tab sx={{color:"green"}} label="Contact" to="/contact" component={Link}/> */}
+
+        </Tabs>
+                   </Grid>
+                   <Grid item xs={1}>
+       </Grid>
+                   
+                   
+                   
+                  
+   
+                   <Grid item xs={3}>
+                       <Box display="flex">
+                       {/* <Button sx={{marginLeft:"auto",backgroundColor:"#F77D0A"}}variant='contained' component={Link} to="/login">Login</Button> */}
+                       {isloggedIn ? (
+                 <Button
+                   component={Link}
+                   // onClick={Hello}
+                   variant='contained'
+                   to="/login"
+                   sx={{ backgroundColor: "#F77D0A",marginLeft:"auto" }}
+                   onClick={()=>logout()}
+                 >
+                   Logout
+                 </Button>
+               ) : (
+                 <Button variant='contained' component={Link} to="/login" sx={{ backgroundColor: "#F77D0A",marginLeft:"auto" }}>
+                   Login
+                 </Button>
+               )}
+                       </Box>
+   
+   
+                   </Grid>
+               </Grid>}
+           
+        </Toolbar>
+       </AppBar>
+   
+
+      )
+    }
     
-    <AppBar sx={{backgroundColor:"#FFFFFF"}}>
-     <Toolbar>
-
-       { isMatch ? <>
-        <Typography variant='h6' sx={{fontWeight:"700",marginLeft:"20px"}}>
-                    ED-TECH
-                </Typography>
-
-             <DrawerComp/>
-        
-       </> : <Grid sx={{placeItems:"center"}} container >
-            <Grid item xs={2}>
-                <Typography variant='h6' sx={{fontWeight:"700",marginLeft:"20px",color:"green"}}>
-                    ED-TECH
-                </Typography>
-            </Grid>
-            <Grid item xs={6} >
-                <Tabs sx={{marginLeft:"auto"}} textColor='inherit' indicatorColor='secondary' value={value} onChange={handleChange}>
-                    <Tab sx={{color:"green"}} label="Home" to="/" component={Link}/>
-                    <Tab sx={{color:"green"}} label="Product" to="/product" component={Link}/>
-                    <Tab sx={{color:"green"}} label="Create" to="/create" component={Link}/>
-                    {/* <Tab sx={{color:"green"}} label="Blog" to="/blog" component={Link}/> */}
-                    {/* <Tab sx={{color:"green"}} label="Contact" to="/contact" component={Link}/> */}
-
-
-
-
-
-                </Tabs>
-                </Grid>
-                <Grid item xs={1}/>
-
-                <Grid item xs={3}>
-                    <Box display="flex">
-                    {/* <Button sx={{marginLeft:"auto",backgroundColor:"#F77D0A"}}variant='contained' component={Link} to="/login">Login</Button> */}
-                    {isloggedIn ? (
-              <Button
-                component={Link}
-                // onClick={Hello}
-                variant='contained'
-                to="/login"
-                sx={{ backgroundColor: "#F77D0A",marginLeft:"auto" }}
-                onClick={()=>logout()}
-              >
-                Logout
-              </Button>
-            ) : (
-              <Button variant='contained' component={Link} to="/login" sx={{ backgroundColor: "#F77D0A",marginLeft:"auto" }}>
-                Login
-              </Button>
-            )}
-                    </Box>
-
-
-                </Grid>
-            </Grid>}
-        
-     </Toolbar>
-    </AppBar>
-    
+   </> 
   )
 }
 
