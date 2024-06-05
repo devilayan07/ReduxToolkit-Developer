@@ -17,7 +17,8 @@ const AuthSlice=createSlice({
     initialState:{
         status:"idle",
         redirectTo:null,
-        isloggedIn:false
+        isloggedIn:false,
+        
     },
     reducers:{
         reset_redirectTo:(state,{payload})=>{
@@ -25,6 +26,8 @@ const AuthSlice=createSlice({
         },
         handleLoggedout:(state,{payload})=>{
             localStorage.removeItem("token");
+            localStorage.removeItem("profilepic");
+
             state.isloggedIn=false
             toast("Logout succesfull")
         },
@@ -60,6 +63,7 @@ const AuthSlice=createSlice({
             state.redirectTo="/"
             toast(action.payload?.message)
             localStorage.setItem("token",action.payload?.token)
+            localStorage.setItem("profilepic",action.payload?.data.profile_pic)
             state.isloggedIn=true
         }
        })

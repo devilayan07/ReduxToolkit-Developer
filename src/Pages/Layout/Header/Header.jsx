@@ -9,7 +9,8 @@ import { profile_pic } from '../../../Component/Helper/Helper';
 function Header() {
     const [authenticated, setAuthenticated] = useState(false);
     const{isloggedIn}=useSelector(state=>state.AUTH)
-    const{profile}=useSelector(state=>state.Profile)
+    // const{profile}=useSelector(state=>state.Profile)
+    const profilepic=localStorage.getItem("profilepic")
     console.log(isloggedIn)
     const dispatch=useDispatch()
     useEffect(() => {
@@ -19,7 +20,7 @@ function Header() {
       }
     }, [authenticated]);
     const[value,setValue]=useState()
-    const token=localStorage.getItem("token")
+    // const token=localStorage.getItem("token")
 
     
 
@@ -44,7 +45,7 @@ function Header() {
     <>
 
     {
-      token ? (
+      isloggedIn ? (
         <AppBar sx={{backgroundColor:"#FFFFFF"}}>
         <Toolbar>
    
@@ -72,7 +73,7 @@ function Header() {
         </Tabs>
                    </Grid>
                    <Grid item xs={1}>
-                   <img src={profile_pic(profile?.profile_pic)}alt=""
+                   <img src={profile_pic(profilepic)}alt=""
                                         height={"50px"}
                                         width={"50px"}
                                         style={{ marginLeft: "auto", borderRadius: "50%" }}

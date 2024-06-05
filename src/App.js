@@ -23,6 +23,7 @@ const SingleProduct=lazy(()=> import("./Pages/CMS/SingleProduct/SingleProduct"))
 const Edit=lazy(()=> import("./Pages/CMS/Edit/Edit") )
 const Header=lazy(()=> import("./Pages/Layout/Header/Header"))
 const Footer=lazy(()=>import("./Pages/Layout/Footer/Footer"))
+
 function PrivateRoute({children}){
   console.log(children,"children")
 

@@ -69,9 +69,9 @@ function Productlist() {
     <Typography variant='h5'textAlign={"center"} sx={{marginTop:"80px"}}>Available Products</Typography>
     <Grid container  >
       {
-        Array.isArray(Products.product.data) && Products.product.data.map((item, index) =>
+        Array.isArray(Products.product?.data) && Products.product?.data.map((item, index) =>
           <Grid item xs={12} md={4} sm={6} sx={{ marginTop: "30px", paddingLeft: "10px"}}>
-            <Card sx={{ marginTop: "20px", maxWidth: 350, height: "400px" }}>
+            <Card sx={{ marginTop: "20px", maxWidth: 350, height: "450px" }}>
               <CardActionArea>
                 <CardMedia
                   component="img"
@@ -84,7 +84,7 @@ function Productlist() {
                 </CardContent>
               </CardActionArea>
               <CardActions sx={{ justifyContent: "center" }}>
-                <Link to={`/product/${item._id}`}><Button variant='contained'>Details</Button></Link>
+                <Link to={`/product/${item._id}`}><Button variant='contained' size='small'>Details</Button></Link>
                  <Button size='small' variant='contained' onClick={()=>confirmDeleted(item._id)}>Delete</Button>
               </CardActions>
 

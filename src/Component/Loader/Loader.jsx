@@ -5,14 +5,14 @@ import { DNA} from 'react-loader-spinner'
 function Loader() {
   return (
     <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-          render(<DNA
+          <DNA
   visible={true}
   height="80"
   width="80"
   ariaLabel="dna-loading"
   wrapperStyle={{}}
   wrapperClass="dna-wrapper"
-  />)
+  />
 
       
     </div>
