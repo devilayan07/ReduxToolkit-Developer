@@ -49,6 +49,11 @@ const AuthSlice=createSlice({
         if(action.payload?.status===200){
             toast(action.payload?.message)
         }
+        else{
+            if(action.payload?.status===201){
+                toast(action.payload?.message)
+            }
+        }
        })
        builder.addCase(fetchregister.rejected,(state,action)=>{
         state.status="idle"
@@ -65,6 +70,11 @@ const AuthSlice=createSlice({
             localStorage.setItem("token",action.payload?.token)
             localStorage.setItem("profilepic",action.payload?.data.profile_pic)
             state.isloggedIn=true
+        }
+        else{
+            if(action.payload?.status===201){
+                toast(action.payload?.message)
+            }
         }
        })
        builder.addCase(login.rejected,(state)=>{

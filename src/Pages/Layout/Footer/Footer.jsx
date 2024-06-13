@@ -55,7 +55,6 @@ function Footer() {
             <Button sx={{ color: 'white', textAlign: 'center', marginBottom: '10px' }} component={Link} to="/">Home</Button>
             <Button sx={{ color: 'white', textAlign: 'center', marginBottom: '10px' }} component={Link} to="/create">Create</Button>
             <Button sx={{ color: 'white', textAlign: 'center', marginBottom: '10px' }} component={Link} to="/product">Product</Button>
-            <Button sx={{ color: 'white', textAlign: 'center', marginBottom: '10px' }} component={Link} to="/login">Login</Button>
           </Box>
 
 

@@ -97,18 +97,29 @@ const[form,setFormData]=useState({})
                   height: "180px",
                   marginTop: "10px",
                   objectFit:"cover",
-                  marginBottom:"20px"
+                  marginBottom:"20px",
+                  overflow:"hidden",
+                  display: "flex",
+                    justifyContent: "center",
+                   alignItems: "center",
+
+
                 }}
               >
                
                 {image && (
                   <img
                    style={{
-                      position: "absolute",
-                       top: 0,
-                       left: 0,
-                       height: "180px",
-                       width: "auto",
+                      // position: "absolute",
+                      //  top: 0,
+                      //  left: 0,
+                      //  height: "180px",
+                      //  width: "auto",
+                      maxHeight: "100%",  
+                      maxWidth: "100%",   
+                      objectFit: "contain"
+
+
                      }}
                      src={URL.createObjectURL(image)}
                      alt=""

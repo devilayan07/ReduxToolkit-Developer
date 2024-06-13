@@ -78,6 +78,11 @@ const ProductSlice=createSlice({
             if(action.payload?.status===200){
                 toast(action.payload?.message)
             }
+            else{
+                if(action.payload?.status===201){
+                    toast(action.payload?.message)
+                }
+            }
         })
         builder.addCase(fetchEdit.rejected,(state)=>{
             state.status="idle"
@@ -89,6 +94,11 @@ const ProductSlice=createSlice({
             state.status="idle"
             if(action.payload?.status===200){
                 toast(action.payload?.message)
+            }
+            else{
+                if(action.payload?.status===201){
+                    toast(action.payload?.message)
+                }
             }
         })
         builder.addCase(fetchDelete.rejected,(state)=>{

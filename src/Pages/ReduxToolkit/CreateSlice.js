@@ -21,6 +21,11 @@ const CreateSlice=createSlice({
             if(action.payload?.status===200){
                 toast(action.payload?.message)
             }
+            else{
+                if(action.payload?.status===201){
+                    toast(action.payload?.message)
+                }
+            }
         })
         builder.addCase(fetchCreate.rejected,(state)=>{
             state.status="idle"
