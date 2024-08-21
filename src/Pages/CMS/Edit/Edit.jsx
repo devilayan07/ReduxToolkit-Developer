@@ -34,7 +34,7 @@ const[form,setFormData]=useState({})
         formdata.append("title",data.title)
         formdata.append("description",data.description)
         formdata.append("image",data.image[0])
-        formdata.append("id",data.id)
+        formdata.append("id",id)
 
         dispatch(fetchEdit(formdata))
 
